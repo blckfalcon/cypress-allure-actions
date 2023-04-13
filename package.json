@@ -1,0 +1,22 @@
+{
+  "name": "cypress-allure-actions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blckfalcon/cypress-allure-actions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blckfalcon/cypress-allure-actions/issues"
+  },
+  "homepage": "https://github.com/blckfalcon/cypress-allure-actions#readme",
+  "dependencies": {
+    "cypress": "^12.9.0"
+  }
+}
