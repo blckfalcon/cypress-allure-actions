@@ -45,9 +45,6 @@ jobs:
           chmod 777 -R /root/.cache
           chmod 777 -R cypress/
 
-      - name: NPM INSTALL
-        run: npm i
-
       - name: Cypress run
         if: always()
         uses: cypress-io/github-action@v5
@@ -62,13 +59,6 @@ jobs:
         with:
           ref: history-${{inputs.context}}-${{inputs.type}}
           path: gh-pages
-          #ref: gh-pages
-          #path: ${{inputs.context}}/${{inputs.type}}
-
-#      - name: Move Results
-#        run: |
-#          mkdir -p allure/allure-results
-#          cp -r allure-results/. allure/allure-results/
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
@@ -78,37 +68,15 @@ jobs:
           allure_results: allure-results
           allure_history: allure-history
           report_url: https://blckfalcon.github.io/cypress-allure-actions/${{inputs.context}}-${{inputs.type}}
-          #allure_report: allure/allure-report
-          #allure_results: allure/allure-results
-          #allure_history: allure/allure-history/${{inputs.context}}/${{inputs.type}}
-          #github_repo: blckfalcon/cypress-allure-actions/${{inputs.context}}/${{inputs.type}}
           keep_reports: 2
-
-      - name: List files in the repository
-        run: |
-            ls
 
       - name: Deploy
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
-          #BRANCH: gh-pages
-          #FOLDER: ${{inputs.context}}/${{inputs.type}}
           BRANCH: history-${{inputs.context}}-${{inputs.type}}
           FOLDER: allure-history
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-#      - name: List files in the repository
-#        run: |
-#            ls allure-history/
-#            echo "lul"
-#            ls staging-full-regression/
-
-#      - name: Create a publish directory for publication
-#        run: |
-#          mkdir -p publish/${{inputs.context}}/${{inputs.type}}
-#          cp -r allure/allure-history/${{inputs.context}}/${{inputs.type}}/. ./publish/${{inputs.context}}/${{inputs.type}}/
-#          cp ./.github/workflows/generate-report-template.html ./publish/index.html
 
       - name: Create a publish directory for publication
         run: |
