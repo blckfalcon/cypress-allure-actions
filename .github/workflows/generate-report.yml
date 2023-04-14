@@ -98,7 +98,7 @@ jobs:
       - name: Create a publish directory for publication
         run: |
           mkdir -p publish/${{inputs.context}}/${{inputs.type}}
-          cp -r allure-history/${{inputs.context}}/${{inputs.type}}/. ./publish/${{inputs.context}}/${{inputs.type}}/
+          cp -r allure/allure-history/${{inputs.context}}/${{inputs.type}}/. ./publish/${{inputs.context}}/${{inputs.type}}/
           cp ./.github/workflows/generate-report-template.html ./publish/index.html
 
       - name: Deploy report to Github Pages
