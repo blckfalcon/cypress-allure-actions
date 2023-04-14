@@ -116,19 +116,19 @@ jobs:
           cp ./.github/workflows/generate-report-template.html ./publish/index.html
 
       - uses: actions/checkout@v3
-        if: inputs.context != 'staging' && inputs.type != 'full-regression'
+        if: inputs.context == 'staging' && inputs.type == 'full-regression'
         continue-on-error: true
         with:
           ref: history-${{inputs.context}}-${{inputs.type}}
           path: publish/staging-full-regression
       - uses: actions/checkout@v3
-        if: inputs.context != 'staging' && inputs.type != 'smoke'
+        if: inputs.context == 'staging' && inputs.type == 'smoke'
         continue-on-error: true
         with:
           ref: history-${{inputs.context}}-${{inputs.type}}
           path: publish/staging-smoke
       - uses: actions/checkout@v3
-        if: inputs.context != 'staging' && inputs.type != 'post-release'
+        if: inputs.context == 'staging' && inputs.type == 'post-release'
         continue-on-error: true
         with:
           ref: history-${{inputs.context}}-${{inputs.type}}
