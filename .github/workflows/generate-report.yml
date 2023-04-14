@@ -1,0 +1,94 @@
+name: run tests and generate report
+
+on:
+  workflow_dispatch:
+    inputs:
+      context:
+        type: choice
+        description: Select the environment
+        default: staging
+        options:
+        - staging
+      browser:
+        type: choice
+        description: Select the browser
+        default: 'chrome'
+        options:
+        - chrome
+        - electron
+      type:
+        type: choice
+        description: Selec the test suite
+        options:
+          - full-regression
+          - smoke
+          - post-release
+
+
+jobs:
+  test:
+    environment: ${{inputs.context}}
+    name: Cypress run
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+      pages: read
+      checks: write
+    container: cypress/browsers:node-16.18.1-chrome-109.0.5414.74-1-ff-109.0-edge-109.0.1518.52-1
+    steps:
+      - name: Setting container permissions for cypress
+        run: |
+          mkdir /root/.cache
+          chmod 777 -R /root/.cache
+          chmod 777 -r cypress/
+
+      - name: NPM INSTALL
+        run: npm i
+
+      - name: Cypress run
+        if: always()
+        uses: cypress-io/github-action@v5
+        with:
+          command: |
+            npx cypress run --browser ${{inputs.browser}}
+
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: history-${{inputs.context}}-${{inputs.type}}
+          path: gh-pages
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_report: allure-report
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 35
+
+      - name: Deploy
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: history-${{inputs.context}}-${{inputs.type}}
+          FOLDER: allure_history
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create a publish directory for publication
+        run: |
+          mkdir publish
+          cp -r allure-history ./publish/${{inputs.context}}-${{inputs.type}}
+          cp ./.github/workflows/generate-report-template.html ./publish/index.html
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: publish
+
