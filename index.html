@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background-color: #f2f0e8;
+                font-family: Poppins;
+            }
+
+            .button {
+                display: inline-block;
+                padding: 12px 24px;
+                background-color: #28B681;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                margin-right: 10px;
+                box-shadow: 0 5px 12px 0 #00000029;
+            }
+
+            .button:hover {
+                background-color: #0d7b59;
+                box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 20%);
+            }
+
+            h1 {
+                color: #3B3B3B;
+                margin-top: 5px;
+            }
+
+            .container {
+                display: grid;
+                grid-template-columns: auto auto;
+                padding: 10px;
+            }
+
+            .item {
+                background-color: rgba(255, 255, 255, 0.8);
+                border: 0.5px solid rgba(0, 0, 0, 0.8);
+                padding: 15px;
+                font-size: 30px;
+                text-align: center;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item">
+            <h1>Staging</h1>
+            <a href="staging/full-regression" class="button">Full-regression</a>
+            <a href="staging/smoke" class="button">Smoke</a>
+            <a href="staging/post-release" class="button">Post-release</a>
+        </div>
+    </div>
+</body>
+</html>
