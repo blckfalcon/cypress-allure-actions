@@ -77,7 +77,7 @@ jobs:
         env:
           REPO: self
           BRANCH: gh-pages
-          FOLDER: history-${{inputs.context}}-${{inputs.type}}
+          FOLDER: ${{inputs.context}}-${{inputs.type}}/last-history
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create a publish directory for publication
