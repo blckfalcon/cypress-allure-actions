@@ -37,6 +37,8 @@ jobs:
       checks: write
     container: cypress/browsers:node-16.18.1-chrome-109.0.5414.74-1-ff-109.0-edge-109.0.1518.52-1
     steps:
+      - uses: actions/checkout@v3
+
       - name: Setting container permissions for cypress
         run: |
           mkdir /root/.cache
