@@ -82,7 +82,7 @@ jobs:
 
       - name: Create a publish directory for publication
         run: |
-          mkdir publish
+          mkdir -p publish/${{inputs.context}}/${{inputs.type}}
           cp -r allure-history ./publish/${{inputs.context}}/${{inputs.type}}
           cp ./.github/workflows/generate-report-template.html ./publish/index.html
 
