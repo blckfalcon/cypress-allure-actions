@@ -63,14 +63,23 @@ jobs:
           ref: gh-pages
           path: ${{inputs.context}}/${{inputs.type}}
 
+      - name: Move Results
+        run: |
+          mkdir -p allure/allure-results
+          cp -r allure-results/. allure/allure-results/
+
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
         if: always()
         with:
           allure_report: allure/allure-report
           allure_results: allure/allure-results
-          allure_history: allure/allure-history/${{inputs.context}}/${{inputs.type}}/
+          allure_history: allure/allure-history/${{inputs.context}}/${{inputs.type}}
           keep_reports: 35
+
+      - name: List files in the repository
+        run: |
+            ls
 
       - name: Deploy
         uses: s0/git-publish-subdir-action@develop
