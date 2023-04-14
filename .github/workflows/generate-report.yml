@@ -81,7 +81,7 @@ jobs:
           #allure_results: allure/allure-results
           #allure_history: allure/allure-history/${{inputs.context}}/${{inputs.type}}
           #github_repo: blckfalcon/cypress-allure-actions/${{inputs.context}}/${{inputs.type}}
-          keep_reports: 35
+          keep_reports: 2
 
       - name: List files in the repository
         run: |
@@ -136,9 +136,10 @@ jobs:
 
       - name: Deploy report to Github Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: publish
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: publish
+          keep_files: true
 
