@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve:report": "npx allure serve",
+    "generate:report": "npx allure generate"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,9 @@
     "url": "https://github.com/blckfalcon/cypress-allure-actions/issues"
   },
   "homepage": "https://github.com/blckfalcon/cypress-allure-actions#readme",
-  "dependencies": {
-    "cypress": "^12.9.0"
+  "devDependencies": {
+    "cypress": "^12.9.0",
+    "@shelex/cypress-allure-plugin": "^2.38.3",
+    "allure-commandline": "^2.21.0"
   }
 }
