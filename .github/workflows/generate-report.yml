@@ -43,7 +43,7 @@ jobs:
         run: |
           mkdir /root/.cache
           chmod 777 -R /root/.cache
-          chmod 777 -r cypress/
+          chmod 777 -R cypress/
 
       - name: NPM INSTALL
         run: npm i
