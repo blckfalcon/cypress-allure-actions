@@ -61,7 +61,7 @@ jobs:
         continue-on-error: true
         with:
           ref: gh-pages
-          path: history-${{inputs.context}}-${{inputs.type}}
+          path: ${{inputs.context}}-${{inputs.type}}/last-history
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
@@ -83,7 +83,7 @@ jobs:
       - name: Create a publish directory for publication
         run: |
           mkdir publish
-          cp -r allure-history ./publish/${{inputs.context}}-${{inputs.type}}
+          cp -r allure-history ./publish/${{inputs.context}}/${{inputs.type}}
           cp ./.github/workflows/generate-report-template.html ./publish/index.html
 
       - name: Deploy report to Github Pages
