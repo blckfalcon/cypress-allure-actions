@@ -82,7 +82,7 @@ jobs:
 
       - name: List files in the repository
         run: |
-            tree -L3 ${{ github.workspace }}
+            ls ${{ github.workspace }}
 
       - name: Create a publish directory for publication
         run: |
