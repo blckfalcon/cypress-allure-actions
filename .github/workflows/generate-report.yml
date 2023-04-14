@@ -75,7 +75,7 @@ jobs:
           allure_report: allure/allure-report
           allure_results: allure/allure-results
           allure_history: allure/allure-history/${{inputs.context}}/${{inputs.type}}
-          github_repo_owner: blckfalcon/cypress-allure-actions/${{inputs.context}}/${{inputs.type}}
+          github_repo: blckfalcon/cypress-allure-actions/${{inputs.context}}/${{inputs.type}}
           keep_reports: 35
 
       - name: List files in the repository
