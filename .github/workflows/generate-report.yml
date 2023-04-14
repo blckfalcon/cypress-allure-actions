@@ -61,15 +61,15 @@ jobs:
         continue-on-error: true
         with:
           ref: gh-pages
-          path: gh-pages
+          path: ${{inputs.context}}/${{inputs.type}}
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
         if: always()
         with:
-          allure_report: allure-report
-          allure_results: allure-results
-          allure_history: allure-history/${{inputs.context}}/${{inputs.type}}/
+          allure_report: allure/allure-report
+          allure_results: allure/allure-results
+          allure_history: allure/allure-history/${{inputs.context}}/${{inputs.type}}/
           keep_reports: 35
 
       - name: Deploy
