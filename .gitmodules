@@ -1,3 +1,0 @@
-[submodule "staging-full-regression"]
-  path = staging-full-regression
-  url = https://github.com/blckfalcon/cypress-allure-actions.git
