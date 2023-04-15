@@ -19,7 +19,7 @@
   "homepage": "https://github.com/blckfalcon/cypress-allure-actions#readme",
   "devDependencies": {
     "cypress": "^12.9.0",
-    "@shelex/cypress-allure-plugin": "^2.38.3",
+    "@shelex/cypress-allure-plugin": "2.37.0",
     "allure-commandline": "^2.21.0"
   }
 }
