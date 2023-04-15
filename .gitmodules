@@ -1,3 +1,11 @@
 [submodule "staging-full-regression"]
   path = staging-full-regression
   url = https://github.com/blckfalcon/cypress-allure-actions.git
+
+[submodule "staging-smoke"]
+  path = staging-smoke
+  url = https://github.com/blckfalcon/cypress-allure-actions.git
+  
+[submodule "staging-post-release"]
+  path = staging-post-release
+  url = https://github.com/blckfalcon/cypress-allure-actions.git
